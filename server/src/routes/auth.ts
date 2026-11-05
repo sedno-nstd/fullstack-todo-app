@@ -19,7 +19,7 @@ authRoutes.post("/register", async (req: Request, res: Response) => {
     });
 
     if (existUser) {
-      return res.status(400).json("User already exist");
+      return res.status(400).json({ error: "User already exist" });
     }
 
     const hashedPassword = await bcrypt.hash(password, 10);

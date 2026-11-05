@@ -20,13 +20,14 @@ router.get("/", authenticateToken, async (req: AuthRequest, res: Response) => {
 
 router.post("/", authenticateToken, async (req: AuthRequest, res: Response) => {
   try {
-    const { title, description } = req.body;
+    const { title, description, status } = req.body;
 
     const task = await prisma.task.create({
       data: {
         title: title,
         description: description,
         authorId: req.userId!,
+        status: status,
       },
     });
 
